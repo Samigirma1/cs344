@@ -1,0 +1,13 @@
+Exercise 1.1
+
+b. Take a look at the gps.py file in the PAIP tools and answer the following questions:
+
+    i. Is the GPS problem solver implemented as a class or as a function?
+
+    ANSWER: it is implemented as a function
+
+    ii. The solver requires initial states, goal states and operators. Of what type are these objects?
+    
+    ANSWER: they are lists.
+
+    iii. Is the mechanism recursive? If so, how does it implement its recursion?
