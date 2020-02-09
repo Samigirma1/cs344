@@ -1,11 +1,126 @@
+import copy
+import pprint
 from gps import gps
+
+
+def op_generator():
+    objects = ["a", "b", "c"]
+    objects_copy = ["a", "b", "c"]
+    positions = ["1", "2", "3"]
+    positions_copy = copy.deepcopy(positions)
+
+    ops = []
+
+    for object in objects:
+        # choose a letter and remove it from the set
+        objects_copy.remove(object)
+
+        for position in positions:
+            positions_copy.remove(position)
+
+            # to avoid moving to the same position, we use a list that has the current position removed
+            for original_position in positions_copy:
+                # from table to table
+                ops.append({
+                    "action": "move " + object + " from " + original_position + " to " + position,
+                    "preconds": [
+                        "space on " + position,
+                        "space on " + object,
+                        object + " at " + original_position
+                    ],
+                    "add": [
+                        object + " at " + position,
+                        "space on " + original_position,
+                    ],
+                    "delete": [
+                        "space on " + position,
+                        object + " at " + original_position
+                    ]
+                })
+
+                for base_object in objects_copy:
+                    # from other box to table
+                    ops.append({
+                        "action": "move " + object + " from " + base_object + " at " + original_position + " to " +
+                                  position,
+                        "preconds": [
+                            "space on " + position,
+                            "space on " + object,
+                            object + " on " + base_object,
+                            base_object + " at " + original_position,
+                        ],
+                        "add": [
+                            "space on " + base_object,
+                            object + " at " + position,
+                        ],
+                        "delete": [
+                            "space on " + position,
+                            object + " on " + base_object,
+                        ]
+                    })
+                    # from table to box
+                    ops.append({
+                        "action": "move " + object + " from " + original_position + " to " + base_object + " at " +
+                                  position,
+                        "preconds": [
+                            "space on " + base_object,
+                            "space on " + object,
+                            object + " at " + original_position,
+                            base_object + " at " + position,
+                        ],
+                        "add": [
+                            "space on " + original_position,
+                            object + " at " + position,
+                            object + " on " + base_object,
+                        ],
+                        "delete": [
+                            "space on " + base_object,
+                            object + " at " + original_position,
+                        ]
+                    })
+
+                    # form box to box
+                    temp_obj = copy.deepcopy(objects_copy)
+                    temp_obj.remove(base_object)
+
+                    for destination in temp_obj:
+                        ops.append({
+                            "action": "move " + object + " from " + base_object + " at " + original_position + " to " +
+                                      destination + " at " + position,
+                            "preconds": [
+                                "space on " + object,
+                                object + " on " + base_object,
+                                base_object + " at " + original_position,
+                                "space on " + destination,
+                                destination + " at " + position,
+                            ],
+                            "add": [
+                                "space on " + base_object,
+                                object + " at " + position,
+                            ],
+                            "delete": [
+                                "space on " + destination,
+                                object + " on " + base_object,
+                            ]
+                        })
+
+            positions_copy = copy.deepcopy(positions)
+
+        objects_copy = copy.deepcopy(objects)
+
+    pp = pprint.PrettyPrinter(indent=4)
+    pp.pprint(ops)
+    print("length: ", len(ops))
+
+    return ops
+
 
 problem = {
     "start1": ["space on a", "a on b", "b on c", "c on table", "space on table"],
     "finish1": ["space on c", "c on b", "b on a", "a on table", "space on table"],
 
-    "start2": ["space on b", "b on table", "space on c", "c on a", "a on table", "space on table"],
-    "finish2": ["space on b", "b on table", "space on a", "a on table", "space on c", "c on table"],
+    "start2": ["space on 1", "space on b", "b at 2", "c on a", "a at 1", "c at 1"],
+    "finish2": ["b at 1", "a at 2", "c at 3", "space on b", "space on a", "space on c"],
 
     "start3": ["space on b", "b on table", "space on a", "a on table", "space on c", "c on table"],
     "finish3": ["space on a", "s on b", "b on c", "c on table", "space on table"],
@@ -291,8 +406,12 @@ problem = {
                 "c on b"
             ]
         }
-    ]
+    ],
+
+    "opsMod": op_generator()
 }
+
+
 #
 def main():
     start1 = problem['start1']
@@ -305,9 +424,10 @@ def main():
     finish3 = problem['finish3']
 
     ops = problem['ops']
+    ops_mod = problem['opsMod']
 
     action_sequences1 = gps(start1, finish1, ops)
-    action_sequences2 = gps(start2, finish2, ops)
+    action_sequences2 = gps(start2, finish2, ops_mod)
     action_sequences3 = gps(start3, finish3, ops)
 
     labels = [
@@ -336,6 +456,7 @@ def main():
     else:
         for action in action_sequences3:
             print(action)
+
 
 if __name__ == '__main__':
     main()
