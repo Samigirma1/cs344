@@ -11,3 +11,31 @@ b. Take a look at the gps.py file in the PAIP tools and answer the following que
     ANSWER: they are lists.
 
     iii. Is the mechanism recursive? If so, how does it implement its recursion?
+
+    ANSWER: It is recursive.
+	
+	1. achieve_all() calls achieve() on all goal_states.
+	2. achieve() calls apply_operator() on an operator which has the goal for its "add" key.
+	3. apply_operator() calls achieve_all() on the "preconds" states for the operators to the
+	   and adds goal to the goal_stack.
+
+d. Copy monkeys.py into your new package, and get it to run. Then answer the following questions:
+
+    i. What famous puzzle does this code model and what are the rules of that puzzle? Does the code faithfully implement the puzzle 
+
+    ANSWER: The code models the "monkey and banana" problem. In the problem, there is a monkey in a room which has a chair, a stick, and bananas suspended
+    from the ceiling. The monkey can only reach the bananas by standing on a chair and hitting it by a stick. The monkey knows how to move around the move, move
+    how to move objects, and how to use a stick. The problem asks for the best sequence of actions for the mokey to get to the bananas.
+
+    ii. How does the GPS mechanism solve the problem? Be prepared to specify this in detail. You can use the logging feature to print a trace of the mechanism’s deliberations.
+
+    ANSWER:
+    
+    iii. Is this code artificially intelligent? If so, which definition (or definitions) of AI from the text does it satisfy?
+    
+    ANSWER:
+    
+    iv. Would a monkey who/that solves the problem in the real world be displaying intelligence?
+
+    ANSWER:
+    
