@@ -4,15 +4,21 @@ b. Take a look at the gps.py file in the PAIP tools and answer the following que
 
     i. Is the GPS problem solver implemented as a class or as a function?
 
-    ANSWER: it is implemented as a function
+    ANSWER: 
+    
+    It is implemented as a function
 
     ii. The solver requires initial states, goal states and operators. Of what type are these objects?
     
-    ANSWER: they are lists.
+    ANSWER: 
+    
+    They are lists.
 
     iii. Is the mechanism recursive? If so, how does it implement its recursion?
 
-    ANSWER: It is recursive.
+    ANSWER: 
+    
+    It is recursive.
 	
 	1. achieve_all() calls achieve() on all goal_states.
 	2. achieve() calls apply_operator() on an operator which has the goal for its "add" key.
@@ -23,7 +29,9 @@ d. Copy monkeys.py into your new package, and get it to run. Then answer the fol
 
     i. What famous puzzle does this code model and what are the rules of that puzzle? Does the code faithfully implement the puzzle 
 
-    ANSWER: The code models the "monkey and banana" problem. In the problem, there is a monkey in a room which has a chair, a stick, and bananas suspended
+    ANSWER: 
+    
+    The code models the "monkey and banana" problem. In the problem, there is a monkey in a room which has a chair, a stick, and bananas suspended
     from the ceiling. The monkey can only reach the bananas by standing on a chair and hitting it by a stick. The monkey knows how to move around the room,
     how to handle objects, and how to use a stick. The problem asks for the best sequence of actions for the mokey to get to the bananas.
 
@@ -31,13 +39,29 @@ d. Copy monkeys.py into your new package, and get it to run. Then answer the fol
 
     ii. How does the GPS mechanism solve the problem? Be prepared to specify this in detail. You can use the logging feature to print a trace of the mechanism’s deliberations.
 
-    ANSWER:
+    ANSWER: 
+    
+    It solves the problem by "working backwards" from the goal.
+
+    1. gps() calls achieve_all on ["not hungry"]
+    2. achieve_all calls achieve on "not hungry"
+    3. achieve looks for "not hungry" in the "add" of every operator. 
+
+        if an operator's "add" key has "not hungry", apply_operator is called.
+        3.1 apply_operator adds "not hungry" onto the goal_stack, and calls achieve_all with the updated goal stack and 
+            and the operators preconditions as goals.
+    4. This recursion goes on until it reaches the start states
     
     iii. Is this code artificially intelligent? If so, which definition (or definitions) of AI from the text does it satisfy?
     
     ANSWER:
+
+    The code is artificially intelligent. It acts rationally by using a reasonable algorithm to thing the best solution from the start state to the goal.
     
     iv. Would a monkey who/that solves the problem in the real world be displaying intelligence?
 
     ANSWER:
+
+    No. A monkey is not a rational being. Unless taught using reinforcement learning, the monkey won't know how to follow the 
+    sequence of steps needed to get to the height of the banana.
     
