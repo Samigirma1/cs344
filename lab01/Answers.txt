@@ -24,8 +24,10 @@ d. Copy monkeys.py into your new package, and get it to run. Then answer the fol
     i. What famous puzzle does this code model and what are the rules of that puzzle? Does the code faithfully implement the puzzle 
 
     ANSWER: The code models the "monkey and banana" problem. In the problem, there is a monkey in a room which has a chair, a stick, and bananas suspended
-    from the ceiling. The monkey can only reach the bananas by standing on a chair and hitting it by a stick. The monkey knows how to move around the move, move
-    how to move objects, and how to use a stick. The problem asks for the best sequence of actions for the mokey to get to the bananas.
+    from the ceiling. The monkey can only reach the bananas by standing on a chair and hitting it by a stick. The monkey knows how to move around the room,
+    how to handle objects, and how to use a stick. The problem asks for the best sequence of actions for the mokey to get to the bananas.
+
+    The code modifies the problem by making the bananas reachable by only climbing on a chair. It also gives the monkey a ball.
 
     ii. How does the GPS mechanism solve the problem? Be prepared to specify this in detail. You can use the logging feature to print a trace of the mechanism’s deliberations.
 
