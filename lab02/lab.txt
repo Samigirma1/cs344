@@ -1,3 +1,5 @@
+NOTE: I used the term "value" when talking about the return values of the evaluate function (or the y-axis values).
+------------------------------------------------------------------------------------------------------------------------
 Exercise 2.1
 Run abs.py, an absolute value variant module and answer the following questions:
 
@@ -32,7 +34,7 @@ variant specified above as its objective function. Get your new implementation r
 1. How do each of the algorithms do on this problem space? Why?
 
 ANSWER: Simulated annealing found a better solution.
-    Hill-climbing finds the a state closest to the initial state with highest possible value.
+    Hill-climbing finds the state closest to the initial state while having the highest possible value.
     Simulated annealing depended less on the initial state by occasionally choosing a random neighboring state for the
     next state.
 
