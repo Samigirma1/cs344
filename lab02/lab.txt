@@ -1,0 +1,103 @@
+Exercise 2.1
+Run abs.py, an absolute value variant module and answer the following questions:
+
+1. Which of the local search algorithms solves the problem? How well does each algorithm do?
+
+ANSWER: Both algorithms solve the problem.
+
+2. Which algorithm works more quickly?
+
+ANSWER: Hill-climbing should be faster. The problem has one, obvious max value. So, the problem can be easily solved by
+        following the "gradient" (the state with the highest value compared to the current state).
+
+3. Does the starting value for x make any difference? Why or why not?
+
+ANSWER: Since there's only one max value, the initial state should not make a difference.
+
+4. What affect does changing the delta step value make on each algorithm? Why?
+
+ANSWER: The delta value determines whether the search function chooses the next state.
+
+5. What is the purpose of the exp_schedule() method in the simulated annealing function call?
+
+ANSWER: It simulates the "temperature" and determines the likelihood of the function choosing a state with a value less
+        than the current state.
+
+------------------------------------------------------------------------------------------------------------------------
+Exercise 2.2
+Create a new module (sine.py), similar to the absolute value variant from exercise 2.1, that uses the sine function
+variant specified above as its objective function. Get your new implementation running and then answer the following
+(similar) questions:
+
+1. How do each of the algorithms do on this problem space? Why?
+
+ANSWER: Simulated annealing found a better solution.
+    Hill-climbing finds the a state closest to the initial state with highest possible value.
+    Simulated annealing depended less on the initial state by occasionally choosing a random neighboring state for the
+    next state.
+
+2. Does the starting value make any difference here?
+
+ANSWER:
+    Hill-climbing - Since hill-climbing only chooses a neighbouring state with a higher value, and since sine is
+    "periodic", the initial state determines how high the value of the final state can be.
+
+    Simulated annealing solution - since the algorithm sometimes chooses a random next state, its less dependent on the initial
+    state.
+
+3. Does modifying the step size (i.e., delta) affect the operation of the two algorithms? Why or why not?
+
+ANSWER: Increasing the step-size doesn't affect the performance of hill-climb while it significantly improves simulated-annealing's
+    performance. This is because it lets the algorithm skip periods with a local maximum and explore other periods which
+    may have higher maximum values.
+
+    *NOTE: hill-climb never reaches a solution if the step-size is an non-zero, integer-multiple of pi. (It'll be in an
+            infinite loop trying to achieve higher and higher values.)
+
+4. What are the maximum and minimum possible values here, and how do the two algorithms score with respect to them?
+
+ANSWER: The min possible value is 0 while the maximum is inf. With higher step-sizes simulated-annealing usually performed
+    better than hill-climb.
+      e.g.
+        Initial                      x: 5		            value: 4.794621373315692
+        Hill-climbing solution       x: 5	                value: 4.794621373315692
+        Simulated annealing solution x: 54.69911184307753	value: 52.587588933974295
+
+------------------------------------------------------------------------------------------------------------------------
+Exercise 2.3
+Add code to your sine implementation (sine.py) that implements random restarts.
+
+1. How does each algorithm do with these restarts? Why?
+
+ANSWER: Hill-climbing achieves the solution sooner than Simulated annealing, while simulated annealing achieved a higher
+    value. This may be because of the random behavior of simulated annealing.
+
+2. What are the average values of the runs for each of the algorithms?
+
+ANSWER:
+    Hill-climbing solution       number of iterations: 78    x_val: 30   value: 29.640948722785854
+    Simulated annealing soln     number of iterations: 91    x_val: 36   value: 35.704038723952166
+
+3. If one of the algorithms does better, explain why; if not, explain why not.
+
+ANSWER:
+    Hill-climbing solution was generally better. The random restarts will eventually put initial state in a range where
+    there is a local maximum that meets the goal state requirement. However, even if simulated-annealing can also benefit
+    from similar randomness, the influence of the restarts are diminished by its random nature.
+
+------------------------------------------------------------------------------------------------------------------------
+Exercise 2.4
+Consider the use of local beam search in which the successor states are chosen using one of the two algorithms as
+applied to the abs-sin function.
+
+1. For which algorithm does beam search make the most sense?
+
+ANSWER:
+
+2. How many solutions could you maintain with reasonable space and time constraints?
+
+ANSWER:
+
+3. How would you modify the code to implement beam search? How is it different from random restarts, if at all?
+
+ANSWER:
