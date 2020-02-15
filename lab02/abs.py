@@ -5,6 +5,12 @@ The function is a linear function  with a single, discontinuous max value
 
 @author: kvlinden
 @version 6feb2013
+
+STUDENT NAME: Samuel Zeleke
+SECTION: CS344 - A
+LAB02
+DUE: Feb 15, 2020
+
 """
 from search import Problem, hill_climbing, simulated_annealing, \
     exp_schedule, genetic_search

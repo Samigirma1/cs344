@@ -5,6 +5,12 @@ Graphs two simple functions using matplotlib:
 
 @author: kvlinden
 @version 6feb2013
+
+STUDENT NAME: Samuel Zeleke
+SECTION: CS344 - A
+LAB02
+DUE: Feb 15, 2020
+
 """
 
 from matplotlib.pyplot import plot, show

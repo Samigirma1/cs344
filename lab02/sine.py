@@ -3,8 +3,12 @@ This module implements local search on a simple sine function variant.
 The function is a linear function  with a single, discontinuous max value
 (see the abs function variant in graphs.py).
 
-@author: kvlinden
-@version 6feb2013
+STUDENT NAME: Samuel Zeleke
+SECTION: CS344 - A
+LAB02
+DUE: Feb 15, 2020
+
+The structure for SinceVariant was copied from absVariant class.
 """
 from search import Problem, hill_climbing, simulated_annealing, \
     exp_schedule, genetic_search
@@ -38,10 +42,18 @@ class SineVariant(Problem):
 
 
 '''
-The function professor wrote for the searches
+This function was writen by Prof. VanderLinden to compare the searches.
+
+@param: max - the maximum x-value generated as the initial state. The lower bound is 0.
+@param: debug = True - if true, the function prints the results of the searches for random initial states the 
+    function generates.
+    
+@author: kvlinden
+Modified by Samuel Zeleke
 '''
 
-def profsFunc(max=30, debug = True):
+
+def profs_func(max=30, debug=True):
     # Formulate a problem with a 2D hill function and a single maximum value.
     maximum = max
     initial = randrange(0, maximum)
@@ -77,11 +89,19 @@ def profsFunc(max=30, debug = True):
 
 
 '''
-The worst r
+This function implements the random restarts for both hill-climbing search and simulated-annealing search.
+ 
+@param: numRestarts = 100   - the maximum number of random restarts the function would execute
+
+@param: maxInitial  = 30    - the maximum x-value generated as the initial state. The lower bound is 0.
+                            - it is also the goal x-val the functions would try to achieve
+
+@param: debug = True        - if true, the function prints the results of the searches for random initial states the 
+                            function generates.
 '''
 
 
-def forExercise2_3(numRestarts = 100, maxInitial = 30):
+def for_exercise2_3(numRestarts=100, maxInitial=30, debug=True):
     average = {
         "init": [0, 0],
         "hill_final": [0, 0],
@@ -95,7 +115,8 @@ def forExercise2_3(numRestarts = 100, maxInitial = 30):
     # do random restarts
     for i in range(numRestarts):
         print("------------------------------ RUN NO %d ------------------------------" % (i + 1))
-        run = profsFunc(maxInitial)
+        # search for the goal state and print results if debug = True
+        run = profs_func(maxInitial, debug)
         goal_sa_achieved = False
         goal_hill_achieved = False
 
@@ -135,11 +156,12 @@ def forExercise2_3(numRestarts = 100, maxInitial = 30):
 
     print("----------------------- Goal Achievement Stats ----------------------")
     print('Hill-climbing solution       number of restarts: %d    x_val: %s   value: %s' % (hill_max[2],
-                                                                                              str(hill_max[0]),
-                                                                                              str(hill_max[1])))
+                                                                                            str(hill_max[0]),
+                                                                                            str(hill_max[1])))
     print('Simulated annealing soln     number of restarts: %d    x_val: %s   value: %s' % (sa_max[2],
-                                                                                              str(sa_max[0]),
-                                                                                              str(sa_max[1])))
+                                                                                            str(sa_max[0]),
+                                                                                            str(sa_max[1])))
+
 
 if __name__ == '__main__':
-    forExercise2_3()
+    for_exercise2_3()
