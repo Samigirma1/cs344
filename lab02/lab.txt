@@ -42,22 +42,22 @@ ANSWER:
     Hill-climbing - Since hill-climbing only chooses a neighbouring state with a higher value, and since sine is
     "periodic", the initial state determines how high the value of the final state can be.
 
-    Simulated annealing solution - since the algorithm sometimes chooses a random next state, its less dependent on the initial
-    state.
+    Simulated annealing solution - since the algorithm sometimes chooses a random next state, its less dependent on the
+    initial state.
 
 3. Does modifying the step size (i.e., delta) affect the operation of the two algorithms? Why or why not?
 
-ANSWER: Increasing the step-size doesn't affect the performance of hill-climb while it significantly improves simulated-annealing's
-    performance. This is because it lets the algorithm skip periods with a local maximum and explore other periods which
-    may have higher maximum values.
+ANSWER: Increasing the step-size doesn't affect the performance of hill-climb while it significantly improves
+    simulated-annealing's performance. This is because it lets the algorithm skip periods with a local maximum and
+    explore other periods which may have higher maximum values.
 
     *NOTE: hill-climb never reaches a solution if the step-size is an non-zero, integer-multiple of pi. (It'll be in an
             infinite loop trying to achieve higher and higher values.)
 
 4. What are the maximum and minimum possible values here, and how do the two algorithms score with respect to them?
 
-ANSWER: The min possible value is 0 while the maximum is inf. With higher step-sizes simulated-annealing usually performed
-    better than hill-climb.
+ANSWER: The min possible y-value is 0. But, since the abs(x * sin(x)) is increasing, there is no maximum y-value.
+    With higher step-sizes simulated-annealing usually performed better than hill-climb.
       e.g.
         Initial                      x: 5		            value: 4.794621373315692
         Hill-climbing solution       x: 5	                value: 4.794621373315692
@@ -93,11 +93,28 @@ applied to the abs-sin function.
 1. For which algorithm does beam search make the most sense?
 
 ANSWER:
+    Local beam search makes the most sense for Simulated-annealing. Hill-climbing search's performance depends
+    significantly on the initial state. So, after choosing the first set of initial states at random, the next best
+    states would be ones neighboring an initial state with a maximum value. So, the answer quickly converges to a value
+    that has the highest local maximum without actually being the maximum value (the goal state). So, the randomness
+    (even if its limited) of simulated-annealing may help it get to even better states that are closer to the goal state.
 
 2. How many solutions could you maintain with reasonable space and time constraints?
 
-ANSWER:
+ANSWER: Since each state can only have two neighbours and we keep a fixed number of states, we can maintain a large
+    number of solutions.
 
 3. How would you modify the code to implement beam search? How is it different from random restarts, if at all?
 
 ANSWER:
+    In random restarts, each "run" is completely independent from the previous runs. But in beam search, the neighbours
+    of the current state (including the initial state) are polled to find the next best states.
+
+    So, I would change code in order to:
+        Generate x-number of initial states and save them as current states;
+    --> generate all current states' neighbouring states;
+        evaluate the values to find the K-best neighbours;
+        keep the k-best neighbours as the current states;    # keep states with the highest values for hill-climb and
+                                                             # occasionally choose states at random for
+                                                             # simulated annealing
+        if one of the current states is a goal state, return the state; otherwise, go to "-->"
