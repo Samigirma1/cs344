@@ -94,7 +94,7 @@ b. What backtracking settings work the best? Why?
 
 c. How many steps does Min-Conflicts require to do its work? Why?
 
-    ANSWER:
+    ANSWER: 37
 
 Exercise 3.3
 Review the AIMA Python implementation for constraint satisfaction problems (CSP) as needed to do the following:
