@@ -6,45 +6,73 @@ a. Which algorithms work (in a timely manner) and which don’t? Explain your re
    implementations) of the algorithms and nature of the problems.
 
     ANSWER:
+        DFS -
+            easy_fig64a: not solved
+            harder_aima_csp: Not solved
+            hardest_escargot: not solved
 
-    easy_fig64a:
-        DFS - Does not solve the problem. DFS is a classical search algorithm that only looks for the possible goal
-            state. So, for a search space this big is highly unlikely for it find a solution.
+            Explanation:
+                DFS is a classical search algorithm that only looks for the possible goal state by populating the table
+                unit-by-unit and checking if the populated board is a goal board. So, for a search space this big is
+                highly unlikely for it find a solution for any of the problems in reasonable time.
 
-        AC-3 - Solves the problem quickly. The algorithm looks ar values in a cells the current box, and its row and
-            column to eliminate values that violate sudoku's constraints. For an easy puzzle, reduce the domain of each
-            cell to a single value so that we can quickly get to a solution.
+        AC-3 -
+            easy_fig64a: solved quickly
+            harder_aima_csp: Not solved
+            hardest_escargot: not solved
 
-        Backtracking search - takes a while to solve the problem. This is because backtracking search is essentially a
-            DFS that steps back when it finds an inconsistent node instead of recursively searching for goal board that
-            satisfies the constraints.
+            Explanation:
+                The algorithm looks ar values in a cells the current box, and its row and column to eliminate values
+                that violate sudoku's constraints. For an easy puzzle (like easy_fig64a), it can reduce the domain of
+                each unit to single values to quickly get to a solution. For harder problems (like harder_aima_csp and
+                hardest_escargot), AC-3, trying to meet local constraints, could eliminate values important for the
+                final solution(s).
 
-        Minimum Conflicts - does not solve the problem.
+        Backtracking search -
 
-    harder_aima_csp: Non of the algorithms solved the problem in time
-        DFS - similar reason to easy_fig64a.
+            easy_fig64a: Takes a while but reaches a solution.
+            harder_aima_csp: Not solved
+            hardest_escargot: not solved
 
-        AC-3 - It is a greedy algorithm. So, when it removes values from a variable's domain, it may have removed values
-            needed for the solution.
+            Explanation:
+                This is because backtracking search is essentially a DFS that steps back when it finds an inconsistent
+                node instead of populating the entire board before checking if there's something wrong. So, for an easy
+                problems with obvious conflicts, backtracking search can find a solution. However, for harder problems,
+                it may be take a while for it to find conflicts early and it performance would be much worse.
 
-        Backtracking search - The problem has more variables compared to easy_fig64a. So, the search tree has even g
+        Minimum Conflicts -
 
-        Minimum Conflicts - does not solve the problem.
+            easy_fig64a: not solved
+            harder_aima_csp: Not solved
+            hardest_escargot: not solved
 
+            Explanation:
+                It does not solve the problem. The algorithm starts with a complete assignment and tweaks
+                adjusts the values of variables in a way that minimizes conflicts, with the hope of eventually finding a
+                solution with no conflicts. It resembles the hill-climbing solution and it may be "stuck" at a local
+                minimum without reaching a solution.
 
 b. What effect does configuring the settings for backtracking have on the results? Try the following:
     i. Set the variable/value ordering (i.e., the select_unassigned_variable parameter) to first-unassigned-variable
     (the default) or minimum-remaining-values (i.e., mrv).
 
         ANSWER:
+        In theory, it should improve its performance by significantly by choosing the variable that has the least number
+        of values in its domain. By choosing the most constraining variable early, it should reduce the find conflicts
+        sooner without having to go much deeper in the search tree. But, it did not make much of a difference in this
+        problem.
 
     ii. Set the inference (i.e., the inference parameter) to forward-checking (i.e., forward_checking).
 
         ANSWER:
+        It improved the algorithms performance significantly. It even solves hard_aima_csp in less than a minute. Making
+        constrained nodes consistent whenever a value is assigned would reduce the size of the search tree frequently.
 
     Which, if any, of these settings should work best for sudoku? What combination of settings actually works the best?
 
         ANSWER:
+        Forward-checking improves works best for sudoku. It does even better when its combined with
+        minimum-remaining-values ordering. It can even solve the hardest problem.
 
 Exercise 3.2
 Pull queens.py and try running each of the algorithms with various values for n. Answer the following questions:

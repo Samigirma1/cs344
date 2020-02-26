@@ -17,7 +17,7 @@ easy_fig64a = Sudoku('..3.2.6..9..3.5..1..18.64....81.29..7.......8..67.82....26
 harder_aima_csp = Sudoku('4173698.5.3..........7......2.....6.....8.4......1.......6.3.7.5..2.....1.4......')
 # Example from http://zonkedyak.blogspot.com/2006/11/worlds-hardest-sudoku-puzzle-al.html
 hardest_escargot = Sudoku('1....7.9..3..2...8..96..5....53..9...1..8...26....4...3......1..4......7..7...3..')
-puzzle = harder_aima_csp
+puzzle = hardest_escargot
 
 print('\nStart:')
 puzzle.display(puzzle.infer_assignment())
@@ -26,11 +26,12 @@ puzzle.display(puzzle.infer_assignment())
 # print("DFS-----------------------")
 # depth_first_graph_search(puzzle)
 
-print("AC3-----------------------")
-AC3(puzzle)
-#
-# print("Backtracking--------------")
-# backtracking_search(puzzle)
+# print("AC3-----------------------")
+# AC3(puzzle)
+
+print("Backtracking--------------")
+backtracking_search(puzzle, select_unassigned_variable=mrv, inference=forward_checking)
+
 # # Consider adding: select_unassigned_variable=mrv & inference=forward_checking
 # print("MinConflicts--------------")
 # min_conflicts(puzzle)
