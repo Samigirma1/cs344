@@ -13,7 +13,7 @@ a. Which algorithms work (in a timely manner) and which don’t? Explain your re
 
             Explanation:
                 DFS is a classical search algorithm that only looks for the possible goal state by populating the table
-                unit-by-unit and checking if the populated board is a goal board. So, for a search space this big is
+                unit-by-unit and checking if the populated board is a goal board. So, for a search space this big, it is
                 highly unlikely for it find a solution for any of the problems in reasonable time.
 
         AC-3 -
@@ -22,8 +22,8 @@ a. Which algorithms work (in a timely manner) and which don’t? Explain your re
             hardest_escargot: not solved
 
             Explanation:
-                The algorithm looks ar values in a cells the current box, and its row and column to eliminate values
-                that violate sudoku's constraints. For an easy puzzle (like easy_fig64a), it can reduce the domain of
+                The algorithm looks at value in the current unit and eliminates values that violate sudoku's constraints
+                from unit in its box, row, and column. For an easy puzzle (like easy_fig64a), it can reduce the domain of
                 each unit to single values to quickly get to a solution. For harder problems (like harder_aima_csp and
                 hardest_escargot), AC-3, trying to meet local constraints, could eliminate values important for the
                 final solution(s).
@@ -35,10 +35,10 @@ a. Which algorithms work (in a timely manner) and which don’t? Explain your re
             hardest_escargot: not solved
 
             Explanation:
-                This is because backtracking search is essentially a DFS that steps back when it finds an inconsistent
-                node instead of populating the entire board before checking if there's something wrong. So, for an easy
-                problems with obvious conflicts, backtracking search can find a solution. However, for harder problems,
-                it may be take a while for it to find conflicts early and it performance would be much worse.
+                This is because backtracking search is essentially a DFS that steps back when it finds a variable without
+                legal values instead of populating the entire board before checking if there's something wrong. So, for
+                easy problems with obvious conflicts, backtracking search can find a solution. However, for harder
+                problems, it may be take a while for it to find conflicts early and its performance may be much worse.
 
         Minimum Conflicts -
 
@@ -47,10 +47,10 @@ a. Which algorithms work (in a timely manner) and which don’t? Explain your re
             hardest_escargot: not solved
 
             Explanation:
-                It does not solve the problem. The algorithm starts with a complete assignment and tweaks
-                adjusts the values of variables in a way that minimizes conflicts, with the hope of eventually finding a
-                solution with no conflicts. It resembles the hill-climbing solution and it may be "stuck" at a local
-                minimum without reaching a solution.
+                It does not solve the problem. The algorithm starts with a complete assignment and adjusts the values of
+                of variables in a way that minimizes conflicts, with the hope of eventually finding a solution with no
+                conflicts. It resembles the hill-climbing solution and it may be "stuck" at a local minimum without
+                reaching a solution.
 
 b. What effect does configuring the settings for backtracking have on the results? Try the following:
     i. Set the variable/value ordering (i.e., the select_unassigned_variable parameter) to first-unassigned-variable
@@ -65,8 +65,8 @@ b. What effect does configuring the settings for backtracking have on the result
     ii. Set the inference (i.e., the inference parameter) to forward-checking (i.e., forward_checking).
 
         ANSWER:
-        It improved the algorithms performance significantly. It even solves hard_aima_csp in less than a minute. Making
-        constrained nodes consistent whenever a value is assigned would reduce the size of the search tree frequently.
+        It improved the algorithm's performance significantly. It even solves hard_aima_csp in less than a minute.
+        By making assigned nodes arc-consistent with unassigned ones, it reduces the search space significantly.
 
     Which, if any, of these settings should work best for sudoku? What combination of settings actually works the best?
 
@@ -87,7 +87,10 @@ a. How large can n get for each of the algorithms? Why?
 b. What backtracking settings work the best? Why?
 
     ANSWER:
-    Minimum-remaining-values ordering does better than forward-checking.
+    Minimum-remaining-values ordering does better than forward-checking. By choosing the the most constrained queen,
+    it can prune "unfruitful" branches from the search tree sooner and spend more time on promising paths.
+    Forward-checking also reduces the branching factor by removing conflicting positions from the remaining unassigned
+    queens. But, it does not backtrack until it has found a variable without any legal moves. So, it would be less
 
     Combined, Minimum-remaining-values ordering and forward checking significantly improve its performance and it can
     solve a problem with up to 500 queens.
@@ -103,7 +106,18 @@ a. Compare and contrast the specifications for CSP (i.e., csp.CSP) and tradition
    to consider the nature of states, domains, actions, results and goal tests.
 
    ANSWER:
+   CSPs use variables, their domains, and constraints to define problems, while traditional problems are defined using
+   states (including initial, and goal states or a goal test) and actions (and their cost) that change one state to another.
+
+   CSPs can be represented as traditional problems by using tuples completely assigned variables as states and taking
+   changing the values of variables as actions.
 
 b. Compare and contrast the nature of the heuristics deployed in traditional and constraint-based problem solving.
 
    ANSWER:
+   Traditional problems are generally graph-searching problems. So, the ordering of the actions taken to get to a goal
+   state matters. So, the heuristics used for these solutions are to reduce the number of actions taken to achieve the
+   a goal state.
+
+   For CSPs, since the ordering of actions taken to get to a goal state does not matter, the heuristics are focused on
+   assigning and reducing the domains of more variables sooner.
