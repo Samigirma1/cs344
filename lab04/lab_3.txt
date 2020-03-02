@@ -1,0 +1,58 @@
+Exercise 4.3
+Use probability theory and Bayes’ rule to compute the following (manually, showing all steps):
+
+a. Drug testing1 — Given that a drug test is 99% sensitive (i.e., drug users get positive results 99% of the time) and
+   98% specific (i.e., non drug users get negative results 98% of the time) and also that 8.9% of Americans are drug
+   users of some sort, compute the following probabilities:
+
+    ANSWER:
+        Given:
+            P(test | user) = 0.99; P(¬test | ¬user) = 0.98; P(user) = 0.089
+
+   i.   P(User) = 0.089
+   ii.  P(test | user) = 0.99
+   iii. P(¬test | user) = 1 - P(test | user) = 1 - 0.99 = 0.01
+   iv.  P(test | ¬user) = 1 - P(¬test | ¬user) = 1 - 0.98 = 0.02
+   v.   P(User | test) = P(test ∩ user) / P(test)
+            P(test ∩ user) = P(test | user) * P(user)
+                           = 0.99 * 0.089 = 0.08811
+            P(test) = P(test ∩ user) + P(test ∩ ¬user)
+                    = 0.08811 + P(test ∩ ¬user)
+                    = 0.08811 + P(test | ¬user) * P(¬user)
+                    = 0.08811 + 0.02 * 0.911 = 0.10633
+        ------------------------------------------
+        P(User | test) = 0.08811 / 0.10633 = 0.829
+        ------------------------------------------
+b. Breast cancer2 — 1% of women at age forty who participate in routine screening have breast cancer. 80% of women with
+   breast cancer will get positive mammographies. 9.6% of women without breast cancer will also get positive
+   mammographies.
+
+    A woman in this age group is found to have a positive mammography in a routine screening. What are the chances that
+    she has/doesn't have cancer?
+
+   ANSWER:
+        Given:
+            P(cancer) = 0.01; P(test | cancer) = 0.8; P(test | ¬cancer) = 0.096
+
+        Required: P(cancer | test) and P(¬cancer | test)
+
+        P(cancer | test) =  P(test ∩ cancer) / P(test)
+            P(test ∩ cancer) = P(test | cancer) * P(cancer)
+                             = 0.8 * 0.01
+                             = 0.08
+            P(test) = P(test ∩ cancer) + P(test ∩ ¬cancer)
+                    = 0.08 + P(test ∩ ¬cancer)
+                    = 0.08 + P(test | ¬cancer) * P(¬cancer)
+                    = 0.08 + 0.096 * 0.99 = 0.17504
+        -----------------------------------------
+        P(cancer | test) = 0.08 / 0.17504 = 0.457
+        -----------------------------------------
+
+        P(¬cancer | test) = P(test ∩ ¬cancer) / P(test)
+                          = (0.096 * 0.99) / 0.17504
+                          = 0.543
+        -----------------------------------------
+        P(cancer | test) = 0.543
+        -----------------------------------------
+
+According to Yudkowsky, only 15% of doctors have the right intuition on this problem.
