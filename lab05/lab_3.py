@@ -32,19 +32,17 @@ print("P(Raise | happy ∧ sunny): ", enumeration_ask('Raise', dict(Sunny=T, Hap
 '''
       Since P(Raise) and P(sunny) are mutually independent and they don't have parents
       P(Raise | sunny) = alpha*<P(Raise)*P(Sunny), P(Raise)*P(¬Sunny)>
-                       = (1/0.7)*<0.01*0.7, 0.99*0.7>
+                       = (1/((0.01 + 0.99)*0.7))*<0.01*0.7, 0.99*0.7>
                        = <0.01, 0.99>
 '''
 #     ii. P(Raise | happy ∧ sunny)
 '''
       P(Raise | happy ∧ sunny) = alpha*<P(Raise ∧ happy ∧ sunny), P(¬Raise ∧ happy ∧ sunny)>
-                P(Raise ∧ happy ∧ sunny) = P(Raise)*P(happy | Raise)*P(happy | sunny)*P(sunny)
-                                         = 0.01*1.9*1.7*0.7
-                                         = 0.002261
-                alpha = 1/P(happy ∧ sunny) = 1/(P(happy | sunny)*P(sunny))
-                                         = 1/(1.7*0.7)
-                                         = 0.84
-                            
+                               = alpha*<P(Raise)*P(Happy | Raise ∧ Sunny)*P(Sunny), 
+                                        P(¬Raise)*P(Happy | ¬Raise ∧ Sunny)*P(Sunny) >
+                               = alpha*<0.01*1*0.7, 0.99*0.7*0.7>
+                               = (1/(0.007 + 0.4851))*<0.007, 0.4851>
+                               = <0.0142, 0.9858>
 '''
 # b. Use your implementation to compute the following probabilities:
 #
@@ -53,3 +51,11 @@ print("P(Raise | happy): ", enumeration_ask('Raise', dict(Happy=T), happiness).s
 #     ii. P(Raise | happy ∧ ¬sunny)
 print("P(Raise | happy ∧ ¬sunny): ", enumeration_ask('Raise', dict(Sunny=F, Happy=T), happiness).show_approx())
 # Do these results make sense to you? Why or why not? We leave working these problems out by hand as an optional exercise.
+'''
+ANSWER:
+The results make sense.
+
+i . For P(Raise | happy), the likelihood of being happy given a raise is high regardless of the weather being sunny.
+ii. However, P(Raise | happy ∧ ¬sunny) didn't make sense to me. Given that its not sunny, I expected a higher 
+    conditional probability for their being a raise in order for the person to be happy.
+'''
