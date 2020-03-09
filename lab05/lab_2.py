@@ -26,7 +26,7 @@ print("\n P(Cancer | T1 ∧ T2): ",
       enumeration_ask('Cancer', dict(Test1=T, Test2=T), cancerTest).show_approx())
 
 # b. P(Cancer | a positive result on test 1, but a negative result on test 2)
-print("\n P(Cancer | T1 ∧ ¬T2)",
+print("\n P(Cancer | T1 ∧ ¬T2): ",
       enumeration_ask('Cancer', dict(Test1=T, Test2=F), cancerTest).show_approx())
 
 '''
@@ -38,6 +38,19 @@ Explain your answers and work them out by hand.
 
 P(Cancer | T1 ∧ T2) = alpha*P(Cancer, T1, T2)
                          P(Cancer, T1, T2) = P(Cancer)*P(Cancer|T1)*P(Cancer|T2)
-                                           = 0.01*P(T1|Cancer)*
+                             P(Cancer | T1) = P(T1 | Cancer)*P(Cancer) / P(T1)
+                                 P(T1) = P(T1 and Cancer) + P(T1 and ¬Cancer)
+                                       = P(T1 | Cancer)*P(Cancer) + P(T1 | ¬Cancer)*P(¬Cancer)
+                                       = 0.9 * 0.01 + 0.2*0.99
+                                       = 0.207
+                             P(Cancer | T1) = 0.9*0.01 / 0.207
+                                            = 0.0435
+                             P(Cancer | T2) = P(Cancer | T1) - because the conditional probabilities of T1 and T2 are the 
+                                                               same
+                         P(Cancer, T1, T2) = 0.01*0.0435*0.0435 = 0.000189225
+                         alpha = 1/P(T1, T2) = 1/(P(T1)*P(T2))
+                                           = 1/(0.207*0.207) = 23.34
+P(Cancer | T1 and T2) = 23.34*0.00189225 =            
+                         
 
 '''
