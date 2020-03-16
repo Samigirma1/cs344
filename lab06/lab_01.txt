@@ -1,0 +1,18 @@
+Exercise 6.1
+Compute the information gain provided by the “Hungry?“ question from the restaurant domain. Use this restaurant data (
+AIMA, Figure 18.3). Would this question be better than either of the questions discussed in class (i.e., “Patrons?”,
+“Type?”?
+
+ANSWER:
+
+Gain(Hungry) = 1 - Remainder(Hunger)
+             = 1 - ((7/12)*B(5/7) + (5/12)*B(1/5))
+               B(5/7) = - ((5/7)*lg(5/7) + (2/7)*lg(2/7)) = 0.86312
+               B(1/5) = - ((1/5)*lg(1/5) + (4/5)*lg(4/5)) = 0.72192
+             = 1 - ((7/12)*0.86312 + (5/12)*0.72192)
+             = 1 - 0.80428
+             = 0.19572
+
+The gain for "Patrons" is greater than the gain for "Hungry," and the gain for "Hungry" is greater than "Type." So,
+asking about Patrons is better than asking if the person is angry.
+
