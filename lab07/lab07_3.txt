@@ -1,0 +1,54 @@
+Exercise 7.3
+Synthetic features and Outliers
+
+Questions:
+
+b. Submit solutions to tasks 1–3.
+
+    Task 1: Try a synthetic feature:
+    In the cell below, create a feature called rooms_per_person, and use that as the input_feature to train_model().
+
+    ANSWER:
+        california_housing_dataframe["rooms_per_person"] =
+            california_housing_dataframe["total_rooms"] / california_housing_dataframe["population"]
+        calibration_data = train_model(
+            learning_rate=0.00005,
+            steps=500,
+            batch_size=5,
+            input_feature="rooms_per_person"
+        )
+
+    Task 2: Identify outliers
+    Use Pyplot's scatter() to create a scatter plot of predictions vs. targets, using the rooms-per-person model you
+    trained in Task 1.
+
+    ANSWER:
+        plt.scatter(calibration_data["predictions"], calibration_data["targets"])
+
+    Task 3: Clip Outliers
+    See if you can further improve the model fit by setting the outlier values of rooms_per_person to some reasonable
+    minimum or maximum.
+
+    ANSWER:
+        california_housing_dataframe["rooms_per_person"] =
+            california_housing_dataframe["rooms_per_person"].apply(lambda x: x if x < 5 else 0)
+
+        equivalently,
+
+        california_housing_dataframe["rooms_per_person"] =
+            california_housing_dataframe["rooms_per_person"].apply(lambda x: x if x < 5 else 5)
+
+b. What is the purpose of introducing synthetic features?
+
+    ANSWER:
+        Synthetic features improve the predictions of our models by providing a feature (made by combining other features)
+        that better represents complex relationships between features and targets. For example, in the case of the
+        california housing data, the median value of a house depend more on the block density than population count or
+        number of rooms. So, using the "bock density" synthetic feature in our model will give us better predictions
+        than using either number of rooms or the number of people.
+
+c. What are outliers and what is typically done with them?
+
+   ANSWER:
+    Outliers are exceptional values that don't represent the rest of the data. Since having those data values skews the
+    predictions of the models, the values are adjusted to either the maximum or the minimum of the rest of the data-values.

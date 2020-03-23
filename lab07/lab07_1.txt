@@ -28,13 +28,17 @@ a. Submit your solutions to exercises 1–2.
 b. Why would one use Pandas rather than the standard data manipulation features provided by NumPy?
 
     ANSWER:
-        1. It lets the user create matrices (dataframes) with named columns.
-        2. Even if missing values are populated with NAN. It lets the user create a matrix (dataframes) with differently
-           sized columns(series).
-        3. Allow for applications of complex functions on data values.
+        1. Pandas are column oriented and they let users create matrices (dataframes) with named columns. So, they are
+           easier to understand and more intuitive.
+        2. It's also much easier to do operations on particular features in data. Instead of operating on data at a spec
+           index in multiple rows (like numpy matrices), Pandas let us efficiently do operations on a feature in multiple
+           records (rows).
+        2. Even if missing values are populated with NAN, Pandas let the user create matrices (dataframes) columns
+           (series) which may originally have different sizes.
+        3. Allow for applications of complex functions on data values using .apply.
 
 c. Under what circumstances would it be useful to reorder/shuffle a Pandas DataFrame?
 
     ANSWER:
-        1. Prevents over-fitting by removing bias in model that may result from having a particular order in the input
+        1. Prevents over-fitting by removing bias that may result from having a particular order in the input
            data.
