@@ -37,4 +37,11 @@ c. What are the hyper-parameters learned in these exercises and is there a “st
    your answer.
 
    ANSWER:
-    The hyper parameters are the learning rate, steps, and batch size.
+    The hyper parameters are the learning rate, steps, and the batch size. The learning rate determines the size of the
+    gradient step. The steps determine the number of steps the model explores/ The batch size determines the size of
+    data chunks (created by dividing the original data) used to train subsequent epochs.
+
+    The way a model is tuned is very data-dependent. So, there is no tuning algorithm. However, the standard practice
+    for tuning the model is to increase the steps until the training converges. If it converges too slowly, we can
+    increase the learning rate. If the training error varies wildly, we should decrease the learning rate, increase
+    training steps, or increase the batch size.

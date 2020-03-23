@@ -49,3 +49,8 @@ P(Cancer | T1 ∧ ¬T2) = alpha*<P(Cancer, T1, ¬T2), P(¬Cancer, T1, ¬T2)>
                     = 1/(0.0009 + 0.1584)<0.0009, 0.1584>
                     = <0.00565, 0.99435>
 '''
+cancerTest = BayesNet([
+    ('Cancer', '', 0.01),
+    ('Test1', 'Cancer', {T: 0.9, F: 0.2}),
+    ('Test2', 'Cancer', {T: 0.9, F: 0.2})
+    ])
