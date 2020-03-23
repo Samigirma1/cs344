@@ -3,7 +3,7 @@ Synthetic features and Outliers
 
 Questions:
 
-b. Submit solutions to tasks 1–3.
+a. Submit solutions to tasks 1–3.
 
     Task 1: Try a synthetic feature:
     In the cell below, create a feature called rooms_per_person, and use that as the input_feature to train_model().
