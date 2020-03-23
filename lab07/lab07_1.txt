@@ -23,7 +23,7 @@ a. Submit your solutions to exercises 1–2.
     ANSWER:
         The operation would insert NAN rows for the indexes that were not in the original index of the Dataframe/Series.
         This lets the user use any external list to make reorder the data-structures. However, if the input list doesn't
-        contain an index value in either data structure, then that row would be dropped from the returned data structure.
+        contain an index value in the dataframe, then that row would be dropped from the returned dataframe.
 
 b. Why would one use Pandas rather than the standard data manipulation features provided by NumPy?
 
