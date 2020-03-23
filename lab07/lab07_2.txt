@@ -1,0 +1,40 @@
+Exercise 7.2
+First Steps with Tensor Flow.
+
+Questions:
+
+a. Compare and contrast categorical vs numerical data
+
+ANSWER:
+    Categorical data is represented by a finite set of labels (categories), while numerical data is data represented in
+    numerical values.
+
+b. Submit solutions to tasks 1–2. Include your best hyper-parameter values and the resulting RMSE, but not the training
+   output.
+
+    Task 1: Achieve an RMSE of 180 or Below
+
+    ANSWER:
+        train_model(
+            learning_rate=0.00002,
+            steps=1000,
+            batch_size=10
+        )
+        RESULTING RMSE: 169.34
+
+    Task 2: Try a different feature
+
+    ANSWER:
+        train_model(
+            learning_rate=0.000025,
+            steps=1000,
+            batch_size=20,
+            input_feature = "population"
+        )
+        RESULTING RMSE: 176.25
+
+c. What are the hyper-parameters learned in these exercises and is there a “standard” tuning algorithm for them? Explain
+   your answer.
+
+   ANSWER:
+    The hyper parameters are the learning rate, steps, and batch size.
