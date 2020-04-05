@@ -1,0 +1,115 @@
+Exercise 8.1
+Validation.
+
+Questions:
+Submit solutions to tasks 1–5.
+
+Task 1: Examine the Data
+    Take a quick skim over the table of values. Everything look okay? See how many issues you can spot. Don't worry if you
+    don't have a background in statistics; common sense will get you far.
+    After you've had a chance to look over the data yourself, check the solution for some additional thoughts on how to
+    verify data.
+
+    ANSWER:
+        Problems in the data:
+            - The minimum value for rooms-per-person is 0 and minimum number of households is 1, suggesting that there's a
+            house without a room. If this is not because of specific data collection choices, this is impossible.
+
+            - The minimum median age is 1. Which is very usual.
+
+            (noticed it after seeing the solution) - There's nothing indicating the units for the median_income feature
+            and the median_house_value target.
+
+Task 2: Plot Latitude/Longitude vs. Median House Value
+    Do you see any other differences in the distributions of features or targets between the training and validation
+    data?
+
+    ANSWER:
+        The medians for median_house_value for the training and the validation data are different. So the training and
+        the validation data are not similar.
+
+Task 3: Return to the Data Importing and Pre-Processing Code, and See if You Spot Any Bugs
+    If you do, go ahead and fix the bug. Don't spend more than a minute or two looking. If you can't find the bug, check the
+    solution.
+
+    ANSWER:
+        The problem was that the data's order was not randomized. Uncommenting the the line that reindex's the dataframe
+        fixes the problem.
+
+Task 4: Train and Evaluate a Model
+    Next, go ahead and complete the train_model() code
+        ANSWER:
+          # 1. Create input functions.
+          training_input_fn = lambda: my_input_fn(
+              features = training_examples,
+              targets = training_targets,
+              batch_size = batch_size,
+          )
+          predict_training_input_fn = lambda: my_input_fn(
+              features = training_examples,
+              targets = training_targets,
+              batch_size = 1,
+              shuffle = False,
+              num_epochs = 1
+          )
+          predict_validation_input_fn = lambda: my_input_fn(
+              features = validation_examples,
+              targets = validation_targets,
+              batch_size = 1,
+              shuffle = False,
+              num_epochs = 1
+          )
+          #...
+          # 2. Take a break and compute predictions.
+          training_predictions = linear_regressor.predict(
+              input_fn = predict_training_input_fn
+          )
+          training_predictions = np.array([item['predictions'][0] for item in training_predictions])
+
+          validation_predictions = linear_regressor.predict(
+              input_fn = predict_validation_input_fn
+          )
+          validation_predictions = np.array([item['predictions'][0] for item in validation_predictions])
+
+        Hyper parameters chosen:
+            - learning_rate = 0.00002
+            - steps = 1000
+            - batch_size = 20
+
+          RMSE achieved: 168.4
+Task 5: Evaluate on Test Data
+    In the cell below, load in the test data set and evaluate your model on it.
+    How does your test performance compare to the validation performance?
+    What does this say about the generalization performance of your model?
+
+    ANSWER:
+        *(I had to look at the solution for some parts)*
+        california_housing_test_data = pd.read_csv("https://download.mlcc.google.com/mledu-datasets/california_housing_test.csv", sep=",")
+
+        test_examples = preprocess_features(california_housing_test_data)
+        test_targets = preprocess_targets(california_housing_test_data)
+
+        predict_test_input_fn = lambda: my_input_fn(
+            test_examples,
+            test_targets["median_house_value"],
+            num_epochs = 1,
+            shuffle = False
+        )
+
+        test_predictions = linear_regressor.predict(input_fn=predict_test_input_fn)
+        test_predictions = np.array([item['predictions'][0] for item in test_predictions])
+
+        RMSE = math.sqrt(metrics.mean_squared_error(test_predictions, test_targets))
+        RMSE
+
+        #RMSE = 162.15
+
+        The error for the test-data was lower than the error for the validation. So, since the error values are different
+        there may be some over-fitting.
+
+Give a one-paragraph summary of what you learned about using training, validation and testing datasets.
+
+    ANSWER:
+        The training data is used to fit the model to real inputs and their output. The validation dataset is the first
+        testing dataset used to tweak the hyper-parameters of the model in order to get the best performance. Finally,
+        the test dataset is used to compare trained models and pick data tha generalizes well.

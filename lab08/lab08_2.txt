@@ -1,0 +1,45 @@
+Exercise 8.2
+
+Questions:
+
+1. What does the Pearson correlation coefficient measure? Identify one example value from the correlation table you
+compute and explain why it makes sense.
+
+    ANSWER:
+    The pearson correlation coefficient measures the association between the changes in the values of two variables. If
+    an increase in the one variable usually associates with an increase in the second variable, they'll have a more
+    positive corr. coefficient (closer to 1). If a decrease in the one variable usually associates with a decrease in
+    the second variable, they'll have a more negative corr. coefficient (closer to -1). If there is no relationship
+    between the changes in the variables, we'll have a value of zero.
+
+    In other words, the correlation coefficient measures how well the scatter plot of two variables resembles a linear
+    function.
+
+    For example, the correlation coefficient foor median-income and median-house-value is 0.7. This means, as the median
+    income of a block people living a block increases, so does the median value of houses in that block.
+
+2. Submit your solutions to tasks 1–2. Include the features you selected for task 1 and the synthetic features you
+developed for task 2; include the final RMS errors but not the training output. Did you beat the Google-provided
+baselines?
+
+    ANSWER:
+    Task 1: Develop a Good Feature Set
+        What's the best performance you can get with just 2 or 3 features?
+
+        ANSWER:
+            Features chosen: median_income, latitude, rooms_person
+
+            Hyper-parameter values:
+                learning-rate = 0.001
+                steps = 1000
+                batch-size = 40
+
+            RMSE: 120.32
+
+     Task 2: Make Better Use of Latitude
+        Try creating some synthetic features that do a better job with latitude.
+
+        ANSWER:
+            Feature I created:
+                distance_from_hub = the minimum latitude distance from LA or San Francisco
+            RMSE = 139.79; It beat the baseline by 0.21.
