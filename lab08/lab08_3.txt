@@ -1,0 +1,68 @@
+Exercise 8.3
+Feature Crosses
+
+Questions:
+
+1. They recommend FTRL for L1 optimization, but the code specifies the same rate (learning_rate) for all runs. How is
+FTRL managing the learning rate?
+
+    ANSWER:
+        The FTRL algorithm uses different learning rates (adjusted from the given learning rate) for each variable's
+        coefficient. So the training can converge to an optimal set of coefficients sooner.
+
+2. What good does the bucketing/binning do?
+
+    ANSWER:
+        Bucketing converts a variable into several binary variables that represent the bin the original variables value
+        may have been. improves the efficacy of FTRL by increasing the number of variables that are usually have zero values.
+
+3. Submit your solutions to tasks 1–2. Did you find their task 1 bucketing to make sense? Identify one unique feature
+cross for task 2 and explain how it could be useful.
+
+    Task 1: Train the Model on Bucketized Feature Columns
+    Bucketize all the real valued features in out example, train the model and see if the results improve
+
+    ANSWER:
+      bucketized_latitude = tf.feature_column.bucketized_column(
+        latitude, boundaries=get_quantile_based_boundaries(
+          training_examples["latitude"], 10))
+
+      # based on age group - child, teen, young adults, middle aged, elderly
+      bucketized_housing_median_age = tf.feature_column.bucketized_column(
+        housing_median_age, boundaries=get_quantile_based_boundaries(
+          training_examples["housing_median_age"], 5))
+
+      # based on tax brackets - 7
+      bucketized_median_income = tf.feature_column.bucketized_column(
+        median_income, boundaries=get_quantile_based_boundaries(
+          training_examples["median_income"], 7))
+
+      # Divide into 5
+      bucketized_rooms_per_person = tf.feature_column.bucketized_column(
+        rooms_per_person, boundaries=get_quantile_based_boundaries(
+          training_examples["rooms_per_person"], 5))
+
+      The results improve significantly, the RMSE gets as low as the 88.15.
+
+    Task 2: Train the Model Using Feature Crosses
+    Add a feature cross of longitude and latitude to your model, train it, and determine whether the results improve.
+
+    ANSWER:
+      # YOUR CODE HERE: Make a feature column for the long_x_lat feature cross
+      long_x_lat = tf.feature_column.crossed_column([bucketized_latitude, bucketized_longitude], 100)
+
+    Did you find their task 1 bucketing to make sense?
+
+    ANSWER:
+        Generally The Bucketing makes sense. Bucketing the lat-long divides the country into several grids. So, the
+        house-value can be related to the zones in the city. The median-income is binned into seven buckets, reflecting
+        tax-brackets.
+
+        I don't understand why the ages are divided into 7 bins. Even if it more granular, I don't see how it reflects
+        real-life age-groups.
+
+    Identify one unique feature cross for task 2 and explain how it could be useful.
+
+    ANSWER:
+        median_income x household - this can be used indicate exclusive "gated communities" which have very high
+        house values
