@@ -1,0 +1,28 @@
+Exercise 8.4
+Predicting house prices: a regression example* — Get this code to run and then answer the following questions.
+
+1. What good did the K-fold validation do in this exercise?
+
+    ANSWER:
+        It provided a more reliable metric for evaluating the model by training four, similar models separately and
+        returning the average of the validation scores of the four models.
+
+2. Chollet claims that it would be problematic to use data values with “wildly different ranges”. Why is this?
+
+    ANSWER:
+        Variables with larger ranges will have more influence on the outcome than variables with smaller ranges. This
+        decreases the accuracy of the model.
+
+3. Chollet also claims that smaller datasets “prefer” smaller networks. Do you agree? Explain your answer.
+
+    ANSWER:
+        As we increase the size of the network, we increase its ability to recognize particular properties the data.
+        For small datasets, this causes overfitting and negatively affects the generality of the model.
+
+4. Try networks with one more and one less hidden layer, and wider or narrower layers. Do any of your alternatives do
+better than the suggested architecture? Why or why not?
+
+    ANSWER:
+        The model with one more hidden level performed slightly better (MAE decreased from 2.5 to 2.4) than the suggested
+        architecture. The model with wider layers performed slightly worse (MAE increased from 2.5 tp 2.6) than the
+        suggested architecture.
