@@ -15,7 +15,7 @@ Task 1: Examine the Data
             - The minimum value for rooms-per-person is 0 and minimum number of households is 1, suggesting that there's a
             house without a room. If this is not because of specific data collection choices, this is impossible.
 
-            - The minimum median age is 1. Which is very usual.
+            - The minimum median age is 1, which is very unusual.
 
             (noticed it after seeing the solution) - There's nothing indicating the units for the median_income feature
             and the median_house_value target.
