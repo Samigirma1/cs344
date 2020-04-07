@@ -24,5 +24,5 @@ better than the suggested architecture? Why or why not?
 
     ANSWER:
         The model with one more hidden level performed slightly better (MAE decreased from 2.5 to 2.4) than the suggested
-        architecture. The model with wider layers performed slightly worse (MAE increased from 2.5 tp 2.6) than the
+        architecture. The model with wider layers performed slightly worse (MAE increased from 2.5 to 2.6) than the
         suggested architecture.

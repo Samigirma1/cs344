@@ -64,5 +64,5 @@ cross for task 2 and explain how it could be useful.
     Identify one unique feature cross for task 2 and explain how it could be useful.
 
     ANSWER:
-        median_income x household - this can be used indicate exclusive "gated communities" which have very high
-        house values
+        median_income x household - this can be used indicate exclusive "gated communities" which have high income, low               number of houses and very high house values. On the opposite end, it can be use to better recognize low income 
+        communities (like projects) which may have high-populations, low median income, and low median house values.
