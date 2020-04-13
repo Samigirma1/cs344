@@ -1,0 +1,5 @@
+Exercise 9.3
+Classifying movie reviews: a binary classification example* — Get this code to run and then answer the following questions.
+
+1. Try Chollet’s “Further experiments”. Do any of the alternatives do better than the suggested architecture?
+   Why or why not?

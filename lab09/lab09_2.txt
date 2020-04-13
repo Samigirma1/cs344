@@ -1,0 +1,29 @@
+Exercise 9.2
+Sparsity and L1 Regularization
+
+Questions:
+
+1. Why are we regularizing with respect to sparsity?
+
+    ANSWER:
+        Sparsity in training data makes the model ineffcient (both in time and space) during inference and risks
+        overfitting to training data. Regularizing lets us drop irrelevant parameters (params that are rarely non-zero)
+        from the model by setting their weights to zero. This reduces the size and complexity of the model.
+
+2. How does L1 regularization increase sparsity?
+
+    ANSWER:
+        L1 regularization reduces complexity subtracting a constant amount from each weight until they are either
+        zero, at their optimal value. So, by making some weights zero, L1 regularization increases sparsity by including
+        fewer (more important) parameters in the model.
+
+3. Task 1: Here, just report the best log loss value / model size you can get and what gamma value you used to get them.
+
+    ANSWER:
+        Lambda         = 0.5
+        Learning rate  = 0.1
+        steps          = 300
+        batch_size     = 100
+        ---------------------
+        Lowest LogLoss = 0.24
+        Optimized size = 638

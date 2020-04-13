@@ -1,0 +1,29 @@
+Exercise 9.1
+Logistic Regression
+
+Questions:
+
+1. How effective is the linear regression approach to the problem?
+
+    ANSWER: The linear regression approach was not effective. It had a a high error rate and
+        even made impossible predictions (probabilities greater than 1).
+
+2. Task 1: Compare and contrast L2 Loss vs LogLoss.
+
+    ANSWER: L2 Loss measures loss by using the square of the diff between the observations and predictions. So, the loss
+        value does not effectively express the difference between probabilities or the gravity of "false certainty" in
+        for binary classification problems.
+        LogLoss measures loss by using the a Cross-entropy function. So, incorrect classifications made with high certainty
+        (high probabilities) will have much higher loss values that incorrect classifications made with low certainty.
+        This makes LogLoss a better measure for calculating loss in probability/classification problems.
+
+3. Task 2: Explain how effective logistic regression is compared with linear regression.
+
+    ANSWER: Since we're using Logloss, the loss values were higher than the loss values for the linear regression
+        approach. However, the logistic regression model did not overfit (validation and training losses were about the
+        same) as much as the linear regression model.
+
+4. Task 3: Here, just report the best values you can achieve for AUC/accuracy and what hyperparameters you used to
+   get them.
+
+    ANSWER:
