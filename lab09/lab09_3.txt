@@ -3,3 +3,16 @@ Classifying movie reviews: a binary classification example* — Get this code to
 
 1. Try Chollet’s “Further experiments”. Do any of the alternatives do better than the suggested architecture?
    Why or why not?
+        - Changing the number of hidden layers:
+               > Increasing the number of hidden layers slightly increases the loss scores and slightly
+                 decreases the accuracy. This is probably because the models hasn't been trained enough epoch's
+                 to adjust the weights enough.
+               > Decreasing the number of hidden layers doesn't affect either the loss or the accuracy. This's probably
+                 The weights of a single layer may have been eough to achieve the same level of accuracy.
+        - Changing the number of units/layer doesn't significantly affect the loss and accuracy.
+        - Changing the loss calculation to mse decreases the loss to almost zero and slightly decreases the accuracy.
+          This is probably because of inefficiency of using L2 to measure loss (since it uses MSE). Since L2 is not as
+          punitive as LogLoss, the model may have not train as well as the model using LogLoss.
+        - Changing the activation function to tanh increases the loss by 0.07 and decreases the accuracy by 0.02.
+            **I don't understand why It should be better. Looking at the graphs for ReLu and tanh, I'd have assumed tanh
+            would be better for classification problems.

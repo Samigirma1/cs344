@@ -27,3 +27,9 @@ Questions:
    get them.
 
     ANSWER:
+        Learning Rate  = 0.000006
+        Steps          = 25000
+        batch_size     = 300
+        ------------------------
+        Accuracy       = 0.78
+        AUC validation = 0.81
