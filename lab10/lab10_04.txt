@@ -9,6 +9,13 @@ a. What’s the size/shape of the cats/dogs datasets?
     ANSWER: 1,000 training, 500 testing images for both cats and dogs.
 
 b. How does the first CNN compare with the one we did in class.
+
+    ANSWER: The Networks look similar, they both have two layers of convolution modules with 32 filters, and anther
+        another with 64 filters. However, the Cat/Dog classifier has an additional convolution module at the beginning
+        with 16 filters.
+
+        Their input layers are also different because the input images have different sizes.
+
 c. Can you see any interesting patterns in the intermediate representations?
 
     ANSWER:

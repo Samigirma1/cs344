@@ -4,5 +4,19 @@ Improving Neural Net Performance
 Questions:
 
 What does AdaGrad do to boost performance?
+
+    Answer: SGD uses a fixed learning rate to eventually get to optimal weight values for the parameters. AdaGrad
+        eventually decreases the learning rate so the training converges to precise optimal weights. It
+        balances speed and accuracy by using higher learning rates at the beginning and using smaller learning rates as
+        the weights get closer to the optimal value.
+
 Tasks 1–3: Report your best hyperparameter settings and their resulting performance.
-Optional Challenge: You can skip this exercise.
+
+  ANSWER:
+        optimizer     - AdaGrad
+        Learning Rate - 0.1
+        Steps         - 5000
+        Batch_size    - 100
+        Hidden layers - 10, 10
+        ----------------------
+        Final RMSE - 66.32
