@@ -1,0 +1,8 @@
+Exercise 10.2
+Improving Neural Net Performance
+
+Questions:
+
+What does AdaGrad do to boost performance?
+Tasks 1–3: Report your best hyperparameter settings and their resulting performance.
+Optional Challenge: You can skip this exercise.

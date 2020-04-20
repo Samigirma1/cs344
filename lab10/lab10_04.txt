@@ -1,0 +1,22 @@
+Exercise 10.4
+ML Practicum: Image Classification — Do the first exercise included in this tutorial.
+
+Questions:
+
+Exercise 1:
+a. What’s the size/shape of the cats/dogs datasets?
+
+    ANSWER: 1,000 training, 500 testing images for both cats and dogs.
+
+b. How does the first CNN compare with the one we did in class.
+c. Can you see any interesting patterns in the intermediate representations?
+
+    ANSWER:
+        1. The convolution looks cyclical. The images go between high contrast images that resemble the original image
+           and images that look like original image if we had applied an edge filter on it.
+
+        2. The modules seem to favor edge features in the images. Most of the images look like the edges on the animals
+         in the original image.
+
+        3. There are som "dark spots" in the images. It's curious how filters that get those tensors are able to generate
+         the "edge-filter" images.

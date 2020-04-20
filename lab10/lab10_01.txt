@@ -1,0 +1,21 @@
+Exercise 10.1
+Intro to Neural Networks
+
+Questions:
+
+1. Would you rather use TensorFlow or Keras to build your models?
+
+    ANSWER: Keras - ANY DAY
+
+Tasks 1 & 2: Report your best hyper-parameter settings and their resulting performance on the testing dataset.
+
+    ANSWER:
+    Task 1:
+        Learning Rate - 0.002
+        Steps         - 1800
+        Batch_size    - 200
+        Hidden layers - 10, 10
+        ----------------------
+        Final RMSE - 106.8
+    Task 2:
+        Final RMSE - 105.65
