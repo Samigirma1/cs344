@@ -1,0 +1,34 @@
+Exercise 11.1
+Intro to Sparse Data and Embeddings
+
+Questions:
+
+Task 1: Is a linear model ever preferable to a deep NN model?
+
+    ANSWER: I'd prefer a linear model over a DNN. We have a small vocabulary and we are only using the presence/absence
+          to label examples. A linear model would only need num(Words in Vocabulary) number of parameters to
+          make a prediction. So, we can better optimize the linear models small number of weights to the fit the data sooner
+          than a DNN (which would have to tune may more weights before making reasonable predictions).
+
+Task 2: Does the NN model do better than the linear model?
+
+    ANSWER: The NN model does a better job at labelling training sets than the linear model (acc. 0.8 to 0.78). However,
+          the linear model made more accurate predictions for the testing set than the NN (acc. 0.78 to 0.72) . This is
+          probably due to over-fitting.
+
+Task 3: Do embeddings do much good for sentiment analysis tasks?
+
+    ANSWER: The DNN now has a performance similar to the Linear model.
+
+Tasks 4–5: Name two words that have similar embeddings and explain why that makes sense.
+
+    ANSWER: Negative words like "worst" and "boring" have similar embeddings. Since these words generally appear in
+            negative reviews, they should also has similar embedding values.
+
+Task 6: Report your best hyper-parameters and their resulting performance.
+
+    ANSWER:
+        learning rate: 0.01
+        Optimizer: Adam
+        Training Accuracy" 0.93
+        Test Accuracy: 0.873
