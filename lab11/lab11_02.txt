@@ -1,0 +1,27 @@
+Exercise 11.2
+Intro to ML Fairness
+
+Questions:
+
+Task #1 — What are the biases present in the given dataset?
+
+    Answer:
+        - white majority, (80% + )
+        - the majority don't have investments (90%+ have 0 capital gain)
+        - there are twice as many men as women
+        - majority has low income (<= 50 K)
+
+
+Task #2 — Assess the potential bias in some other feature besides education level.
+
+    Answer: Looking at income bucket, we see that the gender ratio for incomes less than 50K is about the same as the
+        gender ratio for the general population. However, the gender ratio for incomes above 50K are around 84 men to
+        women. This shows that women who earn higher than 50K may be underrepresented.
+
+Task #3 — Do as written.
+
+Task #4 — Do you find disparities when you look at race rather than gender? If so, which way to they skew?
+
+    Answer: It is skewed to "White" (which has Precision of 0.70 and Recall of 0.6, while "Black" has Precision
+          of 0.65 and Recall of 0.4702).
+
