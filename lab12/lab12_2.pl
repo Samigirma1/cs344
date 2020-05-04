@@ -43,3 +43,8 @@ why not?
     current rule.
 
 Does Prolog inferencing use resolution? Why or why not?
+
+    ANSWER:
+        Prolog does not use resolution. Resolution uses two clauses that involve a logical literal and its compliment to
+        make infer the clause of all the literals in both clauses. However, Prolog only uses inferences based on statements
+        in the knowledge base.
