@@ -36,6 +36,13 @@ Read LPN! Chapter 1 and do the following exercises:
           the query, then it checks if the body is satisfiable. If the body is satisfiable, it then returns the values that
           satisfy the query.
 
+          e.g.
+            For wizard(ron) - the knowledge base has the fact. So, it''s returns true or yes.
+            For witch(ron) - not represented in the knowledge base. So, it returns false or no.
+            For wizard(hermoine) - check hasBroom(hermoine) and hasWand(hermoine)
+                for hasBroom: check quidditchPlayer(hermone). Since quidditchPlayer(hermone) is not in the knowledge,
+                    it returns false or no.
+
 2. Consider the well-known modus ponens. Does Prolog implement a version of modus ponens in propositional logic form?
 If so, demonstrate how it’s done; if not, explain why not. If it doesn’t, can you implement one? Why or why not?
 
@@ -53,3 +60,6 @@ provide with that of propositional logic.
 
 4. Logical implementations generally distinguish the basic operations of TELL and ASK. Does Prolog support this
 distinction? If so, how; if not, why not?
+
+    ANSWER:
+        Prolog represents "TELL" using facts and "ASK" using rules.
