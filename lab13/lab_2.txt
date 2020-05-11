@@ -1,0 +1,102 @@
+Exercise 13.2
+Do the following exercises.
+
+Consider the following situation in the blocks world:
+Given the (separate) facts that:
+
+    - A is on B
+    - B is on C
+    - The table supports C
+    - For any two entities, if the first entity supports the second, then the second is on the first.
+    - For any two entities, if the first entity is on the second, then the first is “above” the second.
+    - For any three entities, if the first entity is above the second which is above the third, then the first is above
+      the third.
+
+Write these facts in FOL and use resolution/unification to prove that A is above the table.
+
+FOL:
+
+    on(a, b).
+    on(b, c).
+    A(D, E) supports(D, E) -> on(E, D).
+
+    supports(table, c).
+
+    A(F, G) on(F, G) -> above(F, G).
+    A(H, I, J) above(H, J) && above(J, I) -> above(H, I).
+
+    ----------------------------------------------------
+Proving using resolution
+In CNF
+    !above(a, table)  #Our Goal
+    on(a, b).
+    on(b, c).
+    !supports(D, E) || on(E, D).
+
+    supports(table, c).
+
+    !on(F, G) || above(F, G).
+    !above(H, J) || !above(J, I) || above(H, I).
+    ----------------------------------------------------
+    1. !above(H, J) || !above(J, I) || above(H, I)
+       !above(a, table)
+
+       unifying using H = a, and I = table ...
+       -----------------------------------
+       !above(a, J) || !above(J, table)
+    ----------------------------------------------------
+    2. !above(a, J) || !above(J, table)
+       !on(F, G) || above(F, G)
+
+       unifying using F = a, and G = J ...
+       -----------------------------------
+       !on(a, J) || !above(J, table)
+    ----------------------------------------------------
+    3. !on(a, J) || !above(J, table)
+       on(a, b)
+
+       unifying using J = b ...
+       -----------------------------------
+       !above(b, table)
+    ----------------------------------------------------
+    4. !above(b, table)
+       !above(H, J) || !above(J, I) || above(H, I)
+
+       unifying using H = b, and I = table ...
+       -----------------------------------
+       !above(b, J) || !above(J, table)
+    ----------------------------------------------------
+    5. !above(b, J) || !above(J, table)
+       !on(F, G) || above(F, G)
+
+       unifying using F = J, and G = table ...
+       -----------------------------------
+       !above(b, J) || !on(J, table)
+    ----------------------------------------------------
+    6. !above(b, J) || !on(J, table)
+       !supports(D, E) || on(E, D)
+
+       unifying using E = J and D = table ...
+       -----------------------------------
+       !above(b, J) || !supports(table, J)
+    ----------------------------------------------------
+    7. !above(b, J) || !supports(table, J)
+       supports(table, c)
+
+       unifying using J = c ...
+       -----------------------------------
+       !above(b, c)
+    ----------------------------------------------------
+    8. !above(b, c)
+       !on(F, G) || above(F, G)
+
+       unifying using F = b, G = c ...
+       -----------------------------------
+       !on(b, c)
+    ----------------------------------------------------
+    9. !on(b, c)
+       on(b, c)
+       -----------------------------------
+       <Empty> => Therefore, above(a, table)!
+
+--------------------------------------------------------
