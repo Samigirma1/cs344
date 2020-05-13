@@ -20,4 +20,36 @@ First-Order Logic — Homework 5
 
    So, the unicorn is horned and magical.
 
+   ---- Speculation about prolog:
+      I don't think we can easily solve the problem in prolog. Prolog proves statements by using modus ponens and searching
+      its knowledge base for facts or for other rules that eventually resolve to facts. However, the unicorn problem's
+      knowledge base does not have any facts. So, prolog won't be able to find a solution for it. (At least, it can't find
+      a solution with enumerating the truth table.)
+
 Do LPN! exercise 2.4 (i.e., the crossword problem).
+
+    ANSWER: this is probably the laziest response...
+
+    word(astante,  a,s,t,a,n,t,e).
+    word(astoria,  a,s,t,o,r,i,a).
+    word(baratto,  b,a,r,a,t,t,o).
+    word(cobalto,  c,o,b,a,l,t,o).
+    word(pistola,  p,i,s,t,o,l,a).
+    word(statale,  s,t,a,t,a,l,e).
+
+    crossword(W1, W2, W3, W4, W5, W6) :-
+        word(W1, _,W1P2,_,W1P4,_,W1P6,_),
+        word(W2, _,W2P2,_,W2P4,_,W2P6,_),
+        word(W3, _,W3P2,_,W3P4,_,W3P6,_),
+        word(W4, _,W4P2,_,W4P4,_,W4P6,_),
+        word(W5, _,W5P2,_,W5P4,_,W5P6,_),
+        word(W6, _,W6P2,_,W6P4,_,W6P6,_),
+        W1P2 = W4P2,
+        W1P4 = W5P2,
+        W1P6 = W6P2,
+        W2P2 = W4P4,
+        W2P4 = W5P4,
+        W2P6 = W6P4,
+        W3P2 = W4P6,
+        W3P4 = W5P6,
+        W3P6 = W6P6.
