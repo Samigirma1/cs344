@@ -1,0 +1,23 @@
+First-Order Logic — Homework 5
+1. Do exercise 7.2 in the text. Do your work on paper and then speculate on whether you could program the solution in
+   Prolog (easily)? Explain why or why not?
+
+   ANSWER:
+
+   Rules.
+   isMythical => isImmortal
+   !isMythical => !isImmortal && isMammal
+   isImmortal || isMammal => isHorned
+   isHorned => isMagical
+
+   -- Inference --
+   !isMythical => !isImmortal && isMammal = (!isMythical => !isImmortal) && (!isMythical => isMammal)
+      -> Since !isMythical => !isImmortal (which is equivalent to isImmortal => isMythical),
+             and isMythical => isImmortal are true, isMythical = isImmortal
+      -> Since isMythical = isisImmortal and (!isMythical => isMammal) = (!isImmortal => isMammal) = (isImmortal || isMammal)
+      -> Since isImmortal || isMammal is true, isHorned is also true.
+      -> Since isHorned is true, isMagical is also true.
+
+   So, the unicorn is horned and magical.
+
+Do LPN! exercise 2.4 (i.e., the crossword problem).
